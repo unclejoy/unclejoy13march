@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unclejoy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if user_signed_in? %>
+	<%= link_to "Sign Out User",destroy_user_session_path,method: :delete %>
+<% elsif store_signed_in?%>
+	<%= link_to "Sign Out Store",destroy_store_session_path,method: :delete %>
+<% else%>
+	<%= link_to "Welcome Guest", users_path %>
+<% end %>
+	
+
+
+<% if notice %>
+	 <p class="notice"><%= notice %></p>
+	 <% elsif alert %>
+ 	<p class="alert"><%= alert %></p>
+ <% end %>
+
+<%= yield %>
+
+</body>
+</html>
